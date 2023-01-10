@@ -20,8 +20,7 @@ export class SignUpDto {
   email: string;
 
   @IsString()
-  @IsNotEmpty()
-//   @MinLength(5)
+  @MinLength(5)
   password: string;
 }
 
