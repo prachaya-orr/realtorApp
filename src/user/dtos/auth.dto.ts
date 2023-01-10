@@ -24,3 +24,10 @@ export class SignUpDto {
   password: string;
 }
 
+export class SigninDto{
+  @IsEmail()
+  email:string;
+
+  @IsString()
+  password:string
+}
