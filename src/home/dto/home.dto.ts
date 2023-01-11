@@ -6,7 +6,6 @@ import {
   IsNotEmpty,
   IsNumber,
   IsPositive,
-  isPositive,
   IsString,
   ValidateNested,
 } from 'class-validator';
@@ -68,6 +67,8 @@ export class HomeResponseDto {
 }
 
 class Image {
+  @IsString()
+  @IsNotEmpty()
   url: string;
 }
 export class CreateHomeDto {
@@ -91,8 +92,8 @@ export class CreateHomeDto {
   @IsPositive()
   price: number;
 
-  @IsString()
-  @IsNotEmpty()
+  @IsNumber()
+  @IsPositive()
   landSize: number;
 
   @IsEnum(PropertyType)

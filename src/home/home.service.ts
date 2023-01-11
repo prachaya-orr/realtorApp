@@ -12,6 +12,17 @@ interface GetHomesParam {
   propertyType: PropertyType;
 }
 
+interface CreateHomeParams {
+  address: string;
+  numberOfBedrooms: number;
+  numberOfBathrooms: number;
+  city: string;
+  price: number;
+  landSize: number;
+  propertyType: PropertyType;
+  images: { url: string }[];
+}
+
 const homeSelect = {
   id: true,
   address: true,
@@ -22,23 +33,6 @@ const homeSelect = {
   number_of_bedrooms: true,
 };
 
-interface CreateHomeParams {
-  address: string;
-
-  numberOfBedrooms: number;
-
-  numberOfBathrooms: number;
-
-  city: string;
-
-  price: number;
-
-  landSize: number;
-
-  propertyType: PropertyType;
-
-  images: { url: string }[];
-}
 @Injectable()
 export class HomeService {
   constructor(private readonly prismaService: PrismaService) {}
@@ -68,9 +62,9 @@ export class HomeService {
     }
 
     return homes.map((home) => {
-      const fetchHome = { ...home, image: home.images[0].url };
-      delete fetchHome.images;
-      return new HomeResponseDto(fetchHome);
+      // const fetchHome = { ...home, image: home.images[0].url };
+      // delete fetchHome.images;
+      return new HomeResponseDto(home);
     });
   }
 
@@ -93,6 +87,43 @@ export class HomeService {
     if (!home) {
       throw new NotFoundException();
     }
+
+    return new HomeResponseDto(home);
+  }
+
+  async createHome(
+    {
+      address,
+      numberOfBathrooms,
+      numberOfBedrooms,
+      city,
+      landSize,
+      price,
+      propertyType,
+      images,
+    }: CreateHomeParams,
+    // userId: number,
+  ) {
+    const home = await this.prismaService.home.create({
+      data: {
+        address,
+        number_of_bathrooms: numberOfBathrooms,
+        number_of_bedrooms: numberOfBedrooms,
+        city,
+        land_size: landSize,
+        propertyType,
+        price,
+        realtor_id: 4,
+      },
+    });
+
+    const homeImages = images.map((image) => {
+      return { ...image, home_id: home.id };
+    });
+
+    await this.prismaService.image.createMany({
+      data: homeImages,
+    });
 
     return new HomeResponseDto(home);
   }
