@@ -20,7 +20,10 @@ interface SinginParam {
 export class AuthService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async signup({ email, password, name, phone }: SignupParams) {
+  async signup(
+    { email, password, name, phone }: SignupParams,
+    userType: UserType,
+  ) {
     const userExists = await this.prismaService.user.findUnique({
       where: { email },
     });
@@ -37,7 +40,7 @@ export class AuthService {
         name,
         phone,
         password: hashedPassword,
-        user_type: UserType.BUYER,
+        user_type: userType,
       },
     });
 
@@ -70,10 +73,9 @@ export class AuthService {
     });
   }
 
-
   generateProductkey(email: string, userType: UserType) {
     const string = `${email}-${userType}-${process.env.PRODUCT_KEY_SECRET}`;
-
+    // use this product key token as a Realtor user to utilize house for renting.
     return bcrypt.hash(string, 12);
   }
 }
