@@ -63,7 +63,7 @@ model Message {
 }
 
 enum PropertyType {
-  RESIDENTAL
+  RESIDENTIAL
   CONDO
 }
 
