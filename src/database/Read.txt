@@ -1,4 +1,0 @@
-// 1) Install Postgres on local machine  localhost:5432 *** use this ***
-
-
-// 2) Host Postgres in cloud 
