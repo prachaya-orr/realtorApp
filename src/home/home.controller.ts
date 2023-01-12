@@ -48,7 +48,8 @@ export class HomeController {
 
   @Post()
   createHome(@Body() createHomeDto: CreateHomeDto, @User() user) {
-    return this.homeService.createHome(createHomeDto);
+    return 'hello';
+    // return this.homeService.createHome(createHomeDto);
   }
 
   @Put(':id')
