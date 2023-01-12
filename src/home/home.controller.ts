@@ -10,7 +10,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { PropertyType } from '@prisma/client';
-import { User } from 'src/user/decorators/user.decorator';
+import { User, UserInfo } from 'src/user/decorators/user.decorator';
 import { CreateHomeDto, HomeResponseDto, UpdateHomeDto } from './dto/home.dto';
 import { HomeService } from './home.service';
 
@@ -47,9 +47,9 @@ export class HomeController {
   }
 
   @Post()
-  createHome(@Body() createHomeDto: CreateHomeDto, @User() user) {
-    return 'hello';
-    // return this.homeService.createHome(createHomeDto);
+  createHome(@Body() createHomeDto: CreateHomeDto, @User() user:UserInfo) {
+    // console.log(user)
+    return this.homeService.createHome(createHomeDto, user.id);
   }
 
   @Put(':id')
