@@ -60,6 +60,7 @@ export class HomeService {
         },
       },
       where: filter,
+      orderBy: { created_at: 'desc' },
     });
 
     if (!homes.length) {
