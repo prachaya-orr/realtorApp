@@ -59,7 +59,9 @@ export class HomeController {
   }
 
   @Delete(':id')
-  deleteHome() {}
+  deleteHome(@Param('id', ParseIntPipe) id: number) {
+    return this.homeService.deleteHomeById(id);
+  }
 }
 
 // http://localhost:3000/home/Thailand/100000/200000
