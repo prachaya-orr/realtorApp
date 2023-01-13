@@ -45,6 +45,7 @@ export class AuthGuard implements CanActivate {
           process.env.JSON_TOKEN_KEY,
         )) as JWTPayload;
 
+        // 3) Database request to get user by id
         const user = exclude(
           await this.prismaService.user.findUnique({
             where: {
@@ -56,6 +57,7 @@ export class AuthGuard implements CanActivate {
 
         if (!user) return false;
 
+        // 4) Determine if the user can permission
         if (roles.includes(user.user_type)) return true;
 
         return false;
@@ -63,9 +65,7 @@ export class AuthGuard implements CanActivate {
         return false;
       }
     }
+
     return true;
-    
-    // 3) Database request to get user by id
-    // 4) Determine if the user can permission
   }
 }

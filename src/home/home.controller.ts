@@ -50,14 +50,16 @@ export class HomeController {
     return this.homeService.getHomeById(id);
   }
 
-  @Roles(UserType.REALTOR, UserType.ADMIN) 
+  @Roles(UserType.REALTOR) 
   @UseGuards(AuthGuard)
   @Post()
   createHome(@Body() createHomeDto: CreateHomeDto, @User() user: UserInfo) {
-    // return this.homeService.createHome(createHomeDto, user.id);
-    return 'created Home';
+    return this.homeService.createHome(createHomeDto, user.id);
   }
 
+
+  @Roles(UserType.REALTOR) 
+  @UseGuards(AuthGuard)
   @Put(':id')
   async updateHome(
     @Param('id', ParseIntPipe) id: number,
@@ -72,6 +74,9 @@ export class HomeController {
     return this.homeService.updateHomeById(id, body);
   }
 
+
+  @Roles(UserType.REALTOR) 
+  @UseGuards(AuthGuard)
   @Delete(':id')
   async deleteHome(
     @Param('id', ParseIntPipe) id: number,
@@ -89,3 +94,10 @@ export class HomeController {
 // http://localhost:3000/home/Thailand/100000/200000
 
 // http://localhost:3000/home?city=Thailand&minPrice=100000&maxPrice=200000
+
+
+// Buyer
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoib2htIiwiaWQiOjcsImlhdCI6MTY3MzU5ODExOSwiZXhwIjoxNjczNzcwOTE5fQ.JR78uP-UBoa9OZFgj522FsUHQvGdZZg1k83qeL9a5jM
+
+// Realter
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoib2htIiwiaWQiOjYsImlhdCI6MTY3MzU5Nzg5NSwiZXhwIjoxNjczNzcwNjk1fQ.tSLkyuODtWRhQuE7RikB7qN6M5l3GVODBldO66FSa7I
