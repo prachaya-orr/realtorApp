@@ -91,7 +91,7 @@ export class HomeController {
   }
 
   @Roles(UserType.BUYER)
-  @Post('/inquire/:id')
+  @Post('/:id/inquire')
   async inquire(
     @Param('id', ParseIntPipe) homeId: number,
     @User() user: UserInfo,
@@ -99,13 +99,28 @@ export class HomeController {
   ) {
     return this.homeService.inquire(user, homeId, message);
   }
+
+  @Roles(UserType.REALTOR)
+  @Get(':id/messages')
+  async getHomeMessages(
+    @Param('id', ParseIntPipe) id: number,
+    @User() user: UserInfo,
+  ) {
+    const realtor = await this.homeService.getRealtorByHomeId(id);
+
+    if (realtor.id !== user.id) {
+      throw new UnauthorizedException();
+    }
+
+    return this.homeService.getMessagesByHomeId(id);
+  }
 }
 
 // http://localhost:3000/home/Thailand/100000/200000
 
 // http://localhost:3000/home?city=Thailand&minPrice=100000&maxPrice=200000
 
-// Buyer 
+// Buyer
 // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoib2htIiwiaWQiOjcsImlhdCI6MTY3MzU5ODExOSwiZXhwIjoxNjczNzcwOTE5fQ.JR78uP-UBoa9OZFgj522FsUHQvGdZZg1k83qeL9a5jM
 
 // Realter
