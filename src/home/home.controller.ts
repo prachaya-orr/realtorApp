@@ -15,7 +15,12 @@ import { PropertyType, UserType } from '@prisma/client';
 import { Roles } from 'src/decorators/role.decorator';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { User, UserInfo } from 'src/user/decorators/user.decorator';
-import { CreateHomeDto, HomeResponseDto, UpdateHomeDto } from './dto/home.dto';
+import {
+  CreateHomeDto,
+  HomeResponseDto,
+  InquireDto,
+  UpdateHomeDto,
+} from './dto/home.dto';
 import { HomeService } from './home.service';
 
 @Controller('home')
@@ -84,13 +89,23 @@ export class HomeController {
     }
     return this.homeService.deleteHomeById(id);
   }
+
+  @Roles(UserType.BUYER)
+  @Post('/inquire/:id')
+  async inquire(
+    @Param('id', ParseIntPipe) homeId: number,
+    @User() user: UserInfo,
+    @Body() { message }: InquireDto,
+  ) {
+    return this.homeService.inquire(user, homeId, message);
+  }
 }
 
 // http://localhost:3000/home/Thailand/100000/200000
 
 // http://localhost:3000/home?city=Thailand&minPrice=100000&maxPrice=200000
 
-// Buyer
+// Buyer 
 // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoib2htIiwiaWQiOjcsImlhdCI6MTY3MzU5ODExOSwiZXhwIjoxNjczNzcwOTE5fQ.JR78uP-UBoa9OZFgj522FsUHQvGdZZg1k83qeL9a5jM
 
 // Realter
