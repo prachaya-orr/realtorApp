@@ -156,7 +156,7 @@ export class HomeService {
   }
 
   async deleteHomeById(id: number) {
-    await this.prismaService.image.deleteMany({ where: { home_id: id } });
+    // await this.prismaService.image.deleteMany({ where: { home_id: id } });
 
     await this.prismaService.home.delete({ where: { id } });
 
@@ -164,6 +164,7 @@ export class HomeService {
       message: `success delete home by id ${id}`,
     };
   }
+  
   async getRealtorByHomeId(id: number) {
     const home = await this.prismaService.home.findUnique({
       where: {
