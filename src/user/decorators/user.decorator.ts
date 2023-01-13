@@ -1,5 +1,4 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { ExecException } from 'child_process';
 
 export interface UserInfo {
   name: string;
