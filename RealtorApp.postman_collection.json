@@ -1,0 +1,408 @@
+{
+	"info": {
+		"_postman_id": "7b4f10a1-6076-4ca6-8ec4-be02a036a8d5",
+		"name": "RealtorApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25415909"
+	},
+	"item": [
+		{
+			"name": "Homes",
+			"item": [
+				{
+					"name": "Homes",
+					"item": [
+						{
+							"name": "Get All Homes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/home",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"home"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Home by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/home/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"home",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Home",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"numberOfBathrooms\": 2,\n    \"city\": \"Bangkok\"\n \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/home/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"home",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Home",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZmxva3NvbmciLCJpZCI6MSwiaWF0IjoxNjcyMTA4MTMxLCJleHAiOjE2NzI0NjgxMzF9.3ULyC2OfwtSHOcDGZZuVy0gF4RoLnnK8asA1CXfaOBc",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"numberOfBedrooms\": 4,\n    \"numberOfBathrooms\": 5,\n    \"address\": \"183/79\",\n    \"city\": \"Nonthaburi\",\n    \"price\": 500000,\n    \"landSize\": \"3500\",\n    \"propertyType\": \"CONDO\",\n    \"images\": [{\n        \"url\": \"img10\"\n    }, {\n        \"url\": \"img11\"\n    }]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/home",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"home"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Home",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/home/12",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"home",
+										"12"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inquire",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZmxva3NvbmdidXllciIsImlkIjoyLCJpYXQiOjE2NzIzNzIwNDEsImV4cCI6MTY3MjczMjA0MX0.EroY4Aif2aDPNFDw4s1Cz67k3Rg1fy0mOxlCfObxyGs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"message\": \"I love this house mak mak\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/home/inquire/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"home",
+										"inquire",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "View All Messages",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZmxva3NvbmciLCJpZCI6MSwiaWF0IjoxNjcyMTA4MTMxLCJleHAiOjE2NzI0NjgxMzF9.3ULyC2OfwtSHOcDGZZuVy0gF4RoLnnK8asA1CXfaOBc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/home/1/messages",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"home",
+										"1",
+										"messages"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Pending",
+					"item": [
+						{
+							"name": "Get Home By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/home/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"home",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Homes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/home?city=Toronto&minPrice=1000000&maxPrice=1500000",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"home"
+									],
+									"query": [
+										{
+											"key": "city",
+											"value": "Toronto"
+										},
+										{
+											"key": "minPrice",
+											"value": "1000000"
+										},
+										{
+											"key": "maxPrice",
+											"value": "1500000"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Home",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Sign Up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Mild\",\n    \"email\": \"mild@realtor.com\",\n    \"phone\": \"555 555 5555\",\n    \"password\":\"banana\",\n    \"productKey\":\"$2a$12$HC2CW3AITQ9TDe0f4v.vuuaPENc4ZAtZVjJQNxlEMf0giMwSntaTm\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/signup/REALTOR",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signup",
+								"REALTOR"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign In",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"mike2@buyer.com\",\n    \"password\":\"banana\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTWlrZSIsImlkIjo0LCJpYXQiOjE2NzQzMTAxNzUsImV4cCI6MTY3NDQ4Mjk3NX0.iMr83fgC7fowRKqVu1cH3R_wLu-JIsQVMkRsvc5yVNo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/auth/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Key",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"mild@realtor.com\",\n    \"userType\":\"REALTOR\"\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"key"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

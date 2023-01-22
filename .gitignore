@@ -1,3 +1,8 @@
+# undone seed
+
+/prisma/seed.ts
+/prisma/user.ts
+
 # compiled output
 /dist
 /node_modules
