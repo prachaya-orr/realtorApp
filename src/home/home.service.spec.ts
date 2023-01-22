@@ -80,5 +80,17 @@ describe('HomeService', () => {
         orderBy: { created_at: 'desc' },
       });
     });
+
+    it('should throw not found exception if not homes are found', async () => {
+      const mockPrismaFindManyHomes = jest.fn().mockReturnValue([]);
+
+      jest
+        .spyOn(prismaService.home, 'findMany')
+        .mockImplementation(mockPrismaFindManyHomes);
+
+      await expect(service.getHomes(filters)).rejects.toThrowError(
+        NotFoundException,
+      );
+    });
   });
 });
